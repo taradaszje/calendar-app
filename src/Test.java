@@ -1,3 +1,5 @@
+import com.controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,12 +10,16 @@ public class Test extends JFrame {
 
     Test(){
         super("Zajebisty kalendarz");
-
+        JPanel upperPanel = new JPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(borderLayout);
-        add(Controller.getInstance().previous, borderLayout.PAGE_END);
-        add(Controller.getInstance().dateTextField, borderLayout.PAGE_START);
-        add(Controller.getInstance().calendarView, borderLayout.CENTER);
+        upperPanel.add(Controller.getInstance().getPrevious());
+        upperPanel.add(Controller.getInstance().getDateTextField());
+        upperPanel.add(Controller.getInstance().getNext());
+        upperPanel.add(Controller.getInstance().getView());
+
+        add(upperPanel, borderLayout.PAGE_START);
+        add(Controller.getInstance().getCalendarView(), borderLayout.CENTER);
         setSize(300,300);
 
         setVisible(true);
