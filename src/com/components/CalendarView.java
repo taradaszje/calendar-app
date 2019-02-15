@@ -7,22 +7,20 @@ import java.awt.*;
 import java.time.LocalDate;
 
 
-
 public class CalendarView extends JPanel implements ChangeDate, ChangeView {
 
     private DayButton days[];
-    public CalendarView(){
 
+    public CalendarView() {
         days = new DayButton[7];
         LocalDate date = LocalDate.now();
-
         createButtons(date, "Week");
         days[0].setBackground(Color.GRAY);
     }
 
-    void createButtons(LocalDate date, String view){
+    void createButtons(LocalDate date, String view) {
         this.removeAll();
-        if(view.equals("Month")) {
+        if (view.equals("Month")) {                  //wrzucic enuma
             days = new DayButton[date.lengthOfMonth()];
             LocalDate temp = date;
             for (int i = 0; i < date.lengthOfMonth(); i++) {
@@ -31,8 +29,7 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
                 days[i] = new DayButton(temp.toString());
                 this.add(days[i]);
             }
-        }
-        else{
+        } else {                           // poprawić na else ifa
             days = new DayButton[7];
             LocalDate temp = date;
             for (int i = 0; i < 7; i++) {
@@ -40,22 +37,18 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
                 days[i] = new DayButton(temp.toString());
                 this.add(days[i]);
             }
-
         }
         updateUI();
-
     }
 
     @Override
     public void updateDate(LocalDate date) {
-
-        for(DayButton day : this.getDays()){
+        for (DayButton day : this.getDays()) {
             day.setBackground(new JButton().getBackground());
-            if(day.getText().equals(date.toString())){
+            if (day.getText().equals(date.toString())) {
                 day.setBackground(Color.GRAY);
             }
         }
-
     }
 
     public DayButton[] getDays() {
@@ -65,6 +58,5 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
     @Override
     public void updateView(String view) {
         createButtons(Controller.getInstance().getDate(), Controller.getInstance().getButtonsView());
-
     }
 }

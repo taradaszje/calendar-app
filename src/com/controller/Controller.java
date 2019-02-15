@@ -10,11 +10,9 @@ import java.util.List;
 public class Controller {
 
     private static Controller ourInstance = new Controller();
-    public static Controller getInstance() {
-        return ourInstance;
-    }
-    LocalDate date = LocalDate.now();
-    String buttonsView = "Week";
+
+    private LocalDate date = LocalDate.now();
+    private String buttonsView = "Week";
     private List<ChangeDate> dateList = new ArrayList();
     private List<ChangeView> viewList = new ArrayList();
     private View view = new View();
@@ -27,7 +25,6 @@ public class Controller {
         dateList.add(dateTextField);
         dateList.add(calendarView);
         viewList.add(calendarView);
-
     }
 
     public String getButtonsView() {
@@ -46,15 +43,16 @@ public class Controller {
         this.date = date;
     }
 
-    public void notifyAboutDateChange(LocalDate date){
-
-        this.dateList.forEach( o->o.updateDate(date) );
-
+    public void notifyAboutDateChange(LocalDate date) {
+        this.dateList.forEach(dateObserver -> dateObserver.updateDate(date));
     }
-    public void notifyAboutViewChange(String view){
 
-        this.viewList.forEach( o->o.updateView(view) );
+    public void notifyAboutViewChange(String view) {
+        this.viewList.forEach(viewObserver -> viewObserver.updateView(view));
+    }
 
+    public static Controller getInstance() {
+        return ourInstance;
     }
 
     public View getView() {

@@ -10,19 +10,20 @@ import java.time.LocalDate;
 public class View extends JComboBox {
 
 
-    private enum Period{
-        Month,Week
+    private enum Period {
+        Month, Week
     }
 
-    public View(){
+    public View() {
         addItem(Period.Week);
         addItem(Period.Month);
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Controller.getInstance().setButtonsView(getSelectedItem().toString()); //powiadomić calendarView o zmianie widoku
-                Controller.getInstance().notifyAboutViewChange(Controller.getInstance().getButtonsView());
-                Controller.getInstance().notifyAboutDateChange(Controller.getInstance().getDate());
+                Controller controller = Controller.getInstance();
+                controller.setButtonsView(getSelectedItem().toString()); //powiadomić calendarView o zmianie widoku
+                controller.notifyAboutViewChange(controller.getButtonsView());
+                controller.notifyAboutDateChange(controller.getDate());
             }
         });
     }
