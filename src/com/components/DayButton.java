@@ -2,8 +2,8 @@ package com.components;
 
 import com.controller.Controller;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
-import javax.swing.plaf.synth.ColorType;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,19 +19,17 @@ import java.util.List;
 // zmienić focus
 // zmienić date w textfildzie
 
-public class DayButton extends JButton implements ChangeDate {
+public class DayButton extends JButton {
 
     public DayButton(String title){
         super(title);
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                    for(DayButton b : Controller.getInstance().getCalendarView().getDays()){
-                        b.setBackground(new JButton().getBackground());
-                    }
+
                     setBackground(Color.GRAY);
-                    updateDate(Controller.getInstance().getDate(),
-                            Controller.getInstance().getView().getSelectedItem().toString());
+                    Controller.getInstance().setDate(stringToDate(title));
+                    Controller.getInstance().notifyAboutDateChange(Controller.getInstance().getDate());
 
             }
         });
@@ -53,18 +51,18 @@ public class DayButton extends JButton implements ChangeDate {
                     LocalDate date = LocalDate.parse(getText(), formatter);
 
                     String note = JOptionPane.showInputDialog("New note");
-                    List<String> notes = new ArrayList<String>();
-
-                    if(!Controller.getInstance().getNotes().containsKey(date)) {
-
+                    if(!NotesMap.notes.containsKey(date)) {
+                        List<String> notes = new ArrayList<String>();
                         notes.add(note);
-                        Controller.getInstance().getNotes().put(date, notes);
+                        NotesMap.notes.put(date, notes);
                     }
                     else{
-                        notes = Controller.getInstance().getNotes().get(date);
-
+                        NotesMap.notes.get(date).add(note);
                     }
+
+
                 }
+                System.out.println(NotesMap.notes.size());
             }
 
             @Override
@@ -78,11 +76,10 @@ public class DayButton extends JButton implements ChangeDate {
             }
         });
     }
-
-    @Override
-    public void updateDate(LocalDate date, String view) {
-        Controller.getInstance().getDateTextField().setText(this.getText());
-
+    public LocalDate stringToDate(String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
+        return date;
     }
 
 }

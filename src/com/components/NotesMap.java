@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface NotesMap {
     Map<LocalDate, List<String>> notes = new HashMap();
+    void updateTable(LocalDate date, int number);
 }

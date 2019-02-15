@@ -1,3 +1,4 @@
+import com.components.NotesView;
 import com.controller.Controller;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class Test extends JFrame {
 
         add(upperPanel, borderLayout.PAGE_START);
         add(Controller.getInstance().getCalendarView(), borderLayout.CENTER);
+        add(new NotesView(), BorderLayout.PAGE_END );
         setSize(300,300);
 
         setVisible(true);

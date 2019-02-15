@@ -1,12 +1,14 @@
 package com.components;
 
+import com.controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
 
 
-public class CalendarView extends JPanel implements ChangeDate {
+public class CalendarView extends JPanel implements ChangeDate, ChangeView {
 
     private DayButton days[];
     public CalendarView(){
@@ -29,7 +31,6 @@ public class CalendarView extends JPanel implements ChangeDate {
                 days[i] = new DayButton(temp.toString());
                 this.add(days[i]);
             }
-            updateUI();
         }
         else{
             days = new DayButton[7];
@@ -39,16 +40,17 @@ public class CalendarView extends JPanel implements ChangeDate {
                 days[i] = new DayButton(temp.toString());
                 this.add(days[i]);
             }
-            updateUI();
+
         }
+        updateUI();
 
     }
 
     @Override
-    public void updateDate(LocalDate date, String view) {
-        System.out.println("Jestem w widoku calendarza");
-        createButtons(date,view);
+    public void updateDate(LocalDate date) {
+
         for(DayButton day : this.getDays()){
+            day.setBackground(new JButton().getBackground());
             if(day.getText().equals(date.toString())){
                 day.setBackground(Color.GRAY);
             }
@@ -60,7 +62,9 @@ public class CalendarView extends JPanel implements ChangeDate {
         return days;
     }
 
-    public void setDays(DayButton[] days) {
-        this.days = days;
+    @Override
+    public void updateView(String view) {
+        createButtons(Controller.getInstance().getDate(), Controller.getInstance().getButtonsView());
+
     }
 }

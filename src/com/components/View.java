@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
-public class View extends JComboBox implements ChangeDate {
+public class View extends JComboBox {
 
 
     private enum Period{
@@ -20,16 +20,12 @@ public class View extends JComboBox implements ChangeDate {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Controller.getInstance().notifyAll(Controller.getInstance().getDate(),
-                        Controller.getInstance().getView().getSelectedItem().toString());
+                Controller.getInstance().setButtonsView(getSelectedItem().toString()); //powiadomić calendarView o zmianie widoku
+                Controller.getInstance().notifyAboutViewChange(Controller.getInstance().getButtonsView());
+                Controller.getInstance().notifyAboutDateChange(Controller.getInstance().getDate());
             }
         });
     }
 
-
-    @Override
-    public void updateDate(LocalDate date, String view) {
-
-    }
 
 }
