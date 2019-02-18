@@ -1,4 +1,3 @@
-import com.components.NotesView;
 import com.controller.Controller;
 
 import javax.swing.*;

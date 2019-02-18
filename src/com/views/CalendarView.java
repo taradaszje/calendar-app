@@ -1,5 +1,8 @@
-package com.components;
+package com.views;
 
+import com.components.ChangeDate;
+import com.components.ChangeView;
+import com.components.ViewType;
 import com.navigation.DayButton;
 import com.controller.Controller;
 

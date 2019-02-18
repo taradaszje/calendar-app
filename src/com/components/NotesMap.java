@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class NotesMap implements NotesService{
 
-    Map<LocalDate, List<String>> notesMap = new HashMap<>();
+    private Map<LocalDate, List<String>> notesMap = new HashMap<>();
     private static NotesMap ourInstance = new NotesMap();
 
     public static NotesMap getInstance() {

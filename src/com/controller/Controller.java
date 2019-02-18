@@ -1,9 +1,12 @@
 package com.controller;
 
+import com.navigation.DateTextField;
 import com.navigation.Next;
 import com.navigation.Previous;
 import com.navigation.View;
 import com.components.*;
+import com.views.CalendarView;
+import com.views.NotesView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
