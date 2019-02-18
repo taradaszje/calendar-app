@@ -1,11 +1,11 @@
-package com.components;
+package com.navigation;
 
+import com.components.ViewType;
 import com.controller.Controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class Previous extends JButton {
 
@@ -16,12 +16,12 @@ public class Previous extends JButton {
             public void actionPerformed(ActionEvent actionEvent) {
 
                 Controller controller = Controller.getInstance();
-                if (controller.getButtonsView().equals("Month")) {
+                if (controller.getViewType() == ViewType.Month ) {
                     controller.setDate(controller.getDate().minusDays(controller.getDate().lengthOfMonth()));
-                } else {
+                } else if(controller.getViewType() == ViewType.Week) {
                     controller.setDate(controller.getDate().minusDays(7));
                 }
-                controller.notifyAboutViewChange(controller.getButtonsView());
+                controller.notifyAboutViewChange(controller.getViewType());
                 controller.notifyAboutDateChange(controller.getDate());
             }
         });

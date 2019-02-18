@@ -1,28 +1,24 @@
-package com.components;
+package com.navigation;
 
+import com.components.ViewType;
 import com.controller.Controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class View extends JComboBox {
 
 
-    private enum Period {
-        Month, Week
-    }
-
     public View() {
-        addItem(Period.Week);
-        addItem(Period.Month);
+        addItem(ViewType.Month);
+        addItem(ViewType.Week);
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Controller controller = Controller.getInstance();
-                controller.setButtonsView(getSelectedItem().toString()); //powiadomić calendarView o zmianie widoku
-                controller.notifyAboutViewChange(controller.getButtonsView());
+                controller.setViewType(ViewType.valueOf(getSelectedItem().toString())); //powiadomić calendarView o zmianie widoku
+                controller.notifyAboutViewChange(controller.getViewType());
                 controller.notifyAboutDateChange(controller.getDate());
             }
         });

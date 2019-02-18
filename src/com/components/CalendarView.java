@@ -1,5 +1,6 @@
 package com.components;
 
+import com.navigation.DayButton;
 import com.controller.Controller;
 
 import javax.swing.*;
@@ -14,22 +15,20 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
     public CalendarView() {
         days = new DayButton[7];
         LocalDate date = LocalDate.now();
-        createButtons(date, "Week");
+        createButtons(date, ViewType.Week);
         days[0].setBackground(Color.GRAY);
     }
 
-    void createButtons(LocalDate date, String view) {
+    void createButtons(LocalDate date, ViewType view) {
         this.removeAll();
-        if (view.equals("Month")) {                  //wrzucic enuma
+        if (view == ViewType.Month) {                  //wrzucic enuma
             days = new DayButton[date.lengthOfMonth()];
-            LocalDate temp = date;
+            LocalDate temp = LocalDate.of(date.getYear(),date.getMonth(),1);
             for (int i = 0; i < date.lengthOfMonth(); i++) {
-                temp = date.minusDays(date.getDayOfMonth() - 1);
-                temp = temp.plusDays(i);
-                days[i] = new DayButton(temp.toString());
+                days[i] = new DayButton(temp.plusDays(i).toString());
                 this.add(days[i]);
             }
-        } else {                           // poprawić na else ifa
+        } else if(view == ViewType.Week) {                           // poprawić na else ifa
             days = new DayButton[7];
             LocalDate temp = date;
             for (int i = 0; i < 7; i++) {
@@ -56,7 +55,8 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
     }
 
     @Override
-    public void updateView(String view) {
-        createButtons(Controller.getInstance().getDate(), Controller.getInstance().getButtonsView());
+    public void updateView(ViewType view) {
+        Controller controller = Controller.getInstance();
+        createButtons(controller.getDate(), controller.getViewType());
     }
 }

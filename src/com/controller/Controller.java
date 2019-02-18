@@ -1,5 +1,8 @@
 package com.controller;
 
+import com.navigation.Next;
+import com.navigation.Previous;
+import com.navigation.View;
 import com.components.*;
 
 import java.time.LocalDate;
@@ -12,27 +15,29 @@ public class Controller {
     private static Controller ourInstance = new Controller();
 
     private LocalDate date = LocalDate.now();
-    private String buttonsView = "Week";
+    private ViewType viewType = ViewType.Week;
     private List<ChangeDate> dateList = new ArrayList();
     private List<ChangeView> viewList = new ArrayList();
     private View view = new View();
     private Previous previous = new Previous();
     private DateTextField dateTextField = new DateTextField();
     private CalendarView calendarView = new CalendarView();
+    private NotesView notesView = new NotesView();
     private Next next = new Next();
 
     private Controller() {
         dateList.add(dateTextField);
         dateList.add(calendarView);
         viewList.add(calendarView);
+        dateList.add(notesView);
     }
 
-    public String getButtonsView() {
-        return buttonsView;
+    public ViewType getViewType() {
+        return viewType;
     }
 
-    public void setButtonsView(String buttonsView) {
-        this.buttonsView = buttonsView;
+    public void setViewType(ViewType viewType) {
+        this.viewType = viewType;
     }
 
     public LocalDate getDate() {
@@ -47,7 +52,7 @@ public class Controller {
         this.dateList.forEach(dateObserver -> dateObserver.updateDate(date));
     }
 
-    public void notifyAboutViewChange(String view) {
+    public void notifyAboutViewChange(ViewType view) {
         this.viewList.forEach(viewObserver -> viewObserver.updateView(view));
     }
 
@@ -73,5 +78,9 @@ public class Controller {
 
     public Next getNext() {
         return next;
+    }
+
+    public NotesView getNotesView() {
+        return notesView;
     }
 }

@@ -1,29 +1,34 @@
 package com.components;
 //TODO coś z enumami
 //TODO ogarnąć utility z date formaterem
-//TODO ogarnąć dodawanie i wyswietlanie notatek
+
 //TODO i w sumie to poczekać na code review
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class NotesView extends JTable implements NotesMap{
-
-    private DefaultTableModel model = new DefaultTableModel();
+public class NotesView extends JPanel implements ChangeDate{
+    private JTextArea textArea = new JTextArea();
+    private JScrollPane scrollPane = new JScrollPane(textArea);
 
     public NotesView(){
-        this.setModel(model);
-        model.setColumnIdentifiers(new String[]{"Date", "Number of notes"});
+        textArea.setText("Notes be here!");
+        scrollPane.setPreferredSize(new Dimension(200,50));
+        this.add(scrollPane);
+        textArea.setEditable(false);
+        setVisible(true);
     }
 
     @Override
-    public DefaultTableModel getModel() {
-        return model;
-    }
-
-    @Override
-    public void updateTable(LocalDate date, int number) {
-        model.fireTableDataChanged();
-
+    public void updateDate(LocalDate date) {
+        NotesMap instance = NotesMap.getInstance();
+        List<String> noteList = instance.notesMap.getOrDefault(date,new ArrayList<>());
+        String temp = "";
+        for(String note : noteList){
+            temp = temp + note + "\n";
+        }
+        textArea.setText(temp);
     }
 }

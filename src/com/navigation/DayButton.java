@@ -1,17 +1,15 @@
-package com.components;
+package com.navigation;
 
+import com.components.DateUtillity;
+import com.components.NotesMap;
 import com.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class DayButton extends JButton {
@@ -20,8 +18,9 @@ public class DayButton extends JButton {
         super(title);
         addActionListener(actionEvent -> {
             setBackground(Color.GRAY);
-            Controller.getInstance().setDate(stringToDate(title));
-            Controller.getInstance().notifyAboutDateChange(Controller.getInstance().getDate());
+            Controller controller = Controller.getInstance();
+            controller.setDate(DateUtillity.stringToDate(title));
+            controller.notifyAboutDateChange(controller.getDate());
         });
         addMouseListener(new MouseListener() {
             @Override
@@ -37,18 +36,11 @@ public class DayButton extends JButton {
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 if (SwingUtilities.isRightMouseButton(mouseEvent)) {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    LocalDate date = LocalDate.parse(getText(), formatter);
+
+                    LocalDate date = LocalDate.parse(getText(), DateUtillity.getFormatter());
                     String note = JOptionPane.showInputDialog("New note");
-                    if (!NotesMap.notes.containsKey(date)) {
-                        List<String> notes = new ArrayList<String>();
-                        notes.add(note);
-                        NotesMap.notes.put(date, notes); //get or default dla hashmapy
-                    } else {
-                        NotesMap.notes.get(date).add(note);
-                    }
+                    NotesMap.getInstance().addNote(date,note);
                 }
-                System.out.println(NotesMap.notes.size());
             }
 
             @Override
@@ -62,11 +54,4 @@ public class DayButton extends JButton {
             }
         });
     }
-
-    public LocalDate stringToDate(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(dateString, formatter);
-        return date;
-    }
-
 }
