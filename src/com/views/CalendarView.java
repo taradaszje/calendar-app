@@ -46,20 +46,23 @@ public class CalendarView extends JPanel implements ChangeDate, ChangeView {
     @Override
     public void updateDate(LocalDate date) {
         for (DayButton day : this.getDays()) {
-            day.setBackground(new JButton().getBackground());
             if (day.getText().equals(date.toString())) {
                 day.setBackground(Color.GRAY);
+                day.setCounter(day.getCounter()+1);
+            }else {
+                day.setBackground(new JButton().getBackground());
+                day.setCounter(0);
             }
         }
-    }
-
-    public DayButton[] getDays() {
-        return days;
     }
 
     @Override
     public void updateView(ViewType view) {
         Controller controller = Controller.getInstance();
         createButtons(controller.getDate(), controller.getViewType());
+    }
+
+    public DayButton[] getDays() {
+        return days;
     }
 }

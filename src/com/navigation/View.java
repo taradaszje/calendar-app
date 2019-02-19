@@ -11,8 +11,8 @@ public class View extends JComboBox {
 
 
     public View() {
-        addItem(ViewType.Month);
         addItem(ViewType.Week);
+        addItem(ViewType.Month);
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

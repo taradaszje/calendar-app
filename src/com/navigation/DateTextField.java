@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateTextField extends JTextField implements ChangeDate {
@@ -18,14 +17,10 @@ public class DateTextField extends JTextField implements ChangeDate {
         this.setText(LocalDate.now().toString());
         addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent keyEvent) {
-
-            }
+            public void keyTyped(KeyEvent keyEvent) {}
 
             @Override
-            public void keyPressed(KeyEvent keyEvent) {
-
-            }
+            public void keyPressed(KeyEvent keyEvent) {}
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
@@ -37,9 +32,8 @@ public class DateTextField extends JTextField implements ChangeDate {
                     }catch (DateTimeParseException e) {
                         JOptionPane.showMessageDialog(new Frame(), "Nie tak kolego, popraw się.");
                     }
-
-                    controller.notifyAboutDateChange(controller.getDate());
                     controller.notifyAboutViewChange(controller.getViewType());
+                    controller.notifyAboutDateChange(controller.getDate());
                 }
             }
         });
