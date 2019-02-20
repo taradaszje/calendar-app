@@ -1,4 +1,5 @@
 package com.views;
+
 import com.components.DateObserver;
 import com.controller.Controller;
 
@@ -10,10 +11,10 @@ public class NotesView extends JPanel implements DateObserver {
     private JTextArea textArea = new JTextArea();
     private JScrollPane scrollPane = new JScrollPane(textArea);
 
-    public NotesView(){
+    public NotesView() {
         Controller.getInstance().addDateObserver(this);
         textArea.setText("Notes be here!");
-        scrollPane.setPreferredSize(new Dimension(200,50));
+        scrollPane.setPreferredSize(new Dimension(200, 50));
         this.add(scrollPane);
         textArea.setEditable(false);
         setVisible(true);

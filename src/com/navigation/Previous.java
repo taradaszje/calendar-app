@@ -1,6 +1,5 @@
 package com.navigation;
 
-import com.components.DateOperation;
 import com.components.ViewType;
 import com.controller.Controller;
 
@@ -23,7 +22,8 @@ public class Previous extends JButton {
         });
         setVisible(true);
     }
-    private void setStrategy(ViewType viewType){
+
+    private void setStrategy(ViewType viewType) {
         viewType.decreaseDate();
     }
 }

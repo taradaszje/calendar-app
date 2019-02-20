@@ -25,7 +25,7 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
     void createButtons(ViewType view) {
         this.removeAll();
         days = setStrategy(view);
-        for(DayButton day :  getDays()){
+        for (DayButton day : getDays()) {
             add(day);
         }
         updateUI();
@@ -37,8 +37,8 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
         for (DayButton day : this.getDays()) {
             if (day.getText().equals(date.toString())) {
                 day.setBackground(Color.GRAY);
-                day.setCounter(day.getCounter()+1);
-            }else {
+                day.setCounter(day.getCounter() + 1);
+            } else {
                 day.setBackground(new JButton().getBackground());
                 day.setCounter(0);
             }
@@ -50,7 +50,8 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
         Controller controller = Controller.getInstance();
         createButtons(controller.getViewType());
     }
-    private DayButton[] setStrategy(ViewType viewType){
+
+    private DayButton[] setStrategy(ViewType viewType) {
         return viewType.createButtons(Controller.getInstance().getDate());
     }
 

@@ -52,10 +52,12 @@ public class Controller {
     public void notifyAboutViewChange(ViewType view) {
         this.viewList.forEach(viewObserver -> viewObserver.updateView(view));
     }
-    public void addDateObserver(DateObserver dateObserver){
+
+    public void addDateObserver(DateObserver dateObserver) {
         this.dateList.add(dateObserver);
     }
-    public void addViewObserver(ViewObserver viewObserver){
+
+    public void addViewObserver(ViewObserver viewObserver) {
         this.viewList.add(viewObserver);
     }
 

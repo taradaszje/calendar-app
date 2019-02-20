@@ -1,5 +1,6 @@
 package com.navigation;
-import com.components.DateUtillity;
+
+import com.components.DateUtility;
 import com.components.NotesMap;
 import com.controller.Controller;
 
@@ -10,42 +11,46 @@ import java.awt.event.MouseListener;
 import java.time.LocalDate;
 
 
-public class DayButton extends JButton{
+public class DayButton extends JButton {
 
-    private int counter ;
+    private int counter;
+
     public DayButton(String title) {
         super(title);
         addActionListener(actionEvent -> {
             setBackground(Color.GRAY);
             Controller controller = Controller.getInstance();
-            controller.setDate(DateUtillity.stringToDate(title));
+            controller.setDate(DateUtility.stringToDate(title));
         });
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                if(counter % 2 == 0){
+                if (counter % 2 == 0) {
                     JOptionPane.showMessageDialog(new Frame(), Controller.getInstance().getDate().getDayOfWeek());
                 }
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {}
+            public void mousePressed(MouseEvent mouseEvent) {
+            }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 if (SwingUtilities.isRightMouseButton(mouseEvent)) {
-                    LocalDate date = LocalDate.parse(getText(), DateUtillity.getFormatter());
+                    LocalDate date = LocalDate.parse(getText(), DateUtility.getFormatter());
                     String note = JOptionPane.showInputDialog("New note");
-                    NotesMap.getInstance().addNote(date,note);
+                    NotesMap.getInstance().addNote(date, note);
                     Controller.getInstance().notifyAboutDateChange(date);
                 }
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
+            public void mouseEntered(MouseEvent mouseEvent) {
+            }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
+            public void mouseExited(MouseEvent mouseEvent) {
+            }
         });
     }
 

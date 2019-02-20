@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class CalendarApp extends JFrame {
 
-    private CalendarApp(){
+    private CalendarApp() {
         super("Zajebisty kalendarz");
         JPanel upperPanel = new JPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,10 +24,11 @@ public class CalendarApp extends JFrame {
 
         add(upperPanel, BorderLayout.PAGE_START);
         add(new CalendarViewObserver(), BorderLayout.CENTER);
-        add(new NotesView(), BorderLayout.PAGE_END );
-        setSize(400,400);
+        add(new NotesView(), BorderLayout.PAGE_END);
+        setSize(400, 400);
         setVisible(true);
     }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(CalendarApp::new);
     }
