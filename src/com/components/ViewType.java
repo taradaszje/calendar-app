@@ -8,13 +8,12 @@ import java.time.LocalDate;
 //todo increase , decrease date zamiast equals string
 public enum ViewType {
 
-    Week{
+    Week {
         @Override
         public void setDate(String object) {
-            if(object.equals(">")){
+            if (object.equals(">")) {
                 Controller.getInstance().setDate(Controller.getInstance().getDate().plusDays(7));
-            }
-            else if(object.equals("<")){
+            } else if (object.equals("<")) {
                 Controller.getInstance().setDate(Controller.getInstance().getDate().minusDays(7));
             }
         }
@@ -29,13 +28,22 @@ public enum ViewType {
             }
             return days;
         }
-    }, Month{
+
+        @Override
+        public void increaseDate() {
+            Controller.getInstance().setDate(Controller.getInstance().getDate().plusDays(7));
+        }
+
+        @Override
+        public void decreaseDate() {
+            Controller.getInstance().setDate(Controller.getInstance().getDate().minusDays(7));
+        }
+    }, Month {
         @Override
         public void setDate(String object) {
-            if(object.equals(">")){
+            if (object.equals(">")) {
                 Controller.getInstance().setDate(Controller.getInstance().getDate().plusMonths(1));
-            }
-            else if(object.equals("<")){
+            } else if (object.equals("<")) {
                 Controller.getInstance().setDate(Controller.getInstance().getDate().minusMonths(1));
             }
         }
@@ -43,13 +51,29 @@ public enum ViewType {
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[localDate.lengthOfMonth()];
-            LocalDate temp = LocalDate.of(localDate.getYear(), localDate.getMonth(),1);
+            LocalDate temp = LocalDate.of(localDate.getYear(), localDate.getMonth(), 1);
             for (int i = 0; i < days.length; i++) {
                 days[i] = new DayButton(temp.plusDays(i).toString());
             }
             return days;
         }
+
+        @Override
+        public void increaseDate() {
+            Controller.getInstance().setDate(Controller.getInstance().getDate().plusMonths(1));
+        }
+
+        @Override
+        public void decreaseDate() {
+            Controller.getInstance().setDate(Controller.getInstance().getDate().minusMonths(1));
+        }
     };
+
     abstract public void setDate(String object);
+
     abstract public DayButton[] createButtons(LocalDate localDate);
+
+    abstract public void increaseDate();
+
+    abstract public void decreaseDate();
 }

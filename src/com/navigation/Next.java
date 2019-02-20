@@ -24,6 +24,6 @@ public class Next extends JButton {
         setVisible(true);
     }
     private void setStrategy(ViewType viewType){
-        viewType.setDate(getText());
+        viewType.increaseDate();
     }
 }

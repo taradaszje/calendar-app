@@ -1,5 +1,4 @@
 package com.views;
-//todo uproscic tworzenie buttonow
 
 import com.components.DateObserver;
 import com.components.ViewObserver;

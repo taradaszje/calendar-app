@@ -21,7 +21,7 @@ public class Controller {
     private ViewType viewType = ViewType.Week;
     private List<DateObserver> dateList = new ArrayList<>();
     private List<ViewObserver> viewList = new ArrayList<>();
-    private NotesService notesService = new NotesMap();
+    private NotesService notesService = NotesMap.getInstance();
 
     private Controller() {
 

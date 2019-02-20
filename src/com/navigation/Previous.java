@@ -24,7 +24,7 @@ public class Previous extends JButton {
         setVisible(true);
     }
     private void setStrategy(ViewType viewType){
-        viewType.setDate(getText());
+        viewType.decreaseDate();
     }
 }
 
