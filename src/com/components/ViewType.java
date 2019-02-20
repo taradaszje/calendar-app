@@ -5,19 +5,9 @@ import com.navigation.DayButton;
 
 import java.time.LocalDate;
 
-//todo increase , decrease date zamiast equals string
 public enum ViewType {
 
     Week {
-        @Override
-        public void setDate(String object) {
-            if (object.equals(">")) {
-                Controller.getInstance().setDate(Controller.getInstance().getDate().plusDays(7));
-            } else if (object.equals("<")) {
-                Controller.getInstance().setDate(Controller.getInstance().getDate().minusDays(7));
-            }
-        }
-
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[7];
@@ -40,15 +30,6 @@ public enum ViewType {
         }
     }, Month {
         @Override
-        public void setDate(String object) {
-            if (object.equals(">")) {
-                Controller.getInstance().setDate(Controller.getInstance().getDate().plusMonths(1));
-            } else if (object.equals("<")) {
-                Controller.getInstance().setDate(Controller.getInstance().getDate().minusMonths(1));
-            }
-        }
-
-        @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[localDate.lengthOfMonth()];
             LocalDate temp = LocalDate.of(localDate.getYear(), localDate.getMonth(), 1);
@@ -68,8 +49,6 @@ public enum ViewType {
             Controller.getInstance().setDate(Controller.getInstance().getDate().minusMonths(1));
         }
     };
-
-    abstract public void setDate(String object);
 
     abstract public DayButton[] createButtons(LocalDate localDate);
 
