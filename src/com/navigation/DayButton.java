@@ -1,6 +1,4 @@
 package com.navigation;
-
-import com.components.ChangeDate;
 import com.components.DateUtillity;
 import com.components.NotesMap;
 import com.controller.Controller;
@@ -21,7 +19,6 @@ public class DayButton extends JButton{
             setBackground(Color.GRAY);
             Controller controller = Controller.getInstance();
             controller.setDate(DateUtillity.stringToDate(title));
-            controller.notifyAboutDateChange(controller.getDate());
         });
         addMouseListener(new MouseListener() {
             @Override

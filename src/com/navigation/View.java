@@ -18,7 +18,6 @@ public class View extends JComboBox {
             public void actionPerformed(ActionEvent actionEvent) {
                 Controller controller = Controller.getInstance();
                 controller.setViewType(ViewType.valueOf(getSelectedItem().toString())); //powiadomić calendarView o zmianie widoku
-                controller.notifyAboutViewChange(controller.getViewType());
                 controller.notifyAboutDateChange(controller.getDate());
             }
         });

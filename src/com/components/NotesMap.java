@@ -15,12 +15,12 @@ public class NotesMap implements NotesService{
         return ourInstance;
     }
 
-    private NotesMap() {
+    public NotesMap() {
     }
 
     @Override
     public void addNote(LocalDate date, String note) {
-       List<String> temp = notesMap.getOrDefault(date, new ArrayList<String>());
+       List<String> temp = notesMap.getOrDefault(date, new ArrayList<>());
        temp.add(note);
        notesMap.put(date,temp);
     }
@@ -29,7 +29,4 @@ public class NotesMap implements NotesService{
         return notesMap;
     }
 
-    public void setNotesMap(Map<LocalDate, List<String>> notesMap) {
-        this.notesMap = notesMap;
-    }
 }

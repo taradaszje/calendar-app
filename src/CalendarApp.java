@@ -3,15 +3,13 @@ import com.controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 
-public class CallendarApp extends JFrame {
+public class CalendarApp extends JFrame {
 
-
-    BorderLayout borderLayout = new BorderLayout();
-
-    CallendarApp(){
+    private CalendarApp(){
         super("Zajebisty kalendarz");
         JPanel upperPanel = new JPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        BorderLayout borderLayout = new BorderLayout();
         setLayout(borderLayout);
         Controller controller = Controller.getInstance();
         upperPanel.add(controller.getPrevious());
@@ -22,13 +20,10 @@ public class CallendarApp extends JFrame {
         add(upperPanel, BorderLayout.PAGE_START);
         add(controller.getCalendarView(), BorderLayout.CENTER);
         add(controller.getNotesView(), BorderLayout.PAGE_END );
-        setSize(300,300);
-
+        setSize(400,400);
         setVisible(true);
     }
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new CallendarApp());
-
-
+        EventQueue.invokeLater(CalendarApp::new);
     }
 }

@@ -1,5 +1,6 @@
 package com.navigation;
 
+import com.components.DateOperation;
 import com.components.ViewType;
 import com.controller.Controller;
 
@@ -14,18 +15,16 @@ public class Previous extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 Controller controller = Controller.getInstance();
-                if (controller.getViewType() == ViewType.Month ) {
-                    controller.setDate(controller.getDate().minusDays(controller.getDate().lengthOfMonth()));
-                } else if(controller.getViewType() == ViewType.Week) {
-                    controller.setDate(controller.getDate().minusDays(7));
-                }
+                setStrategy(controller.getViewType());
                 controller.notifyAboutViewChange(controller.getViewType());
                 controller.notifyAboutDateChange(controller.getDate());
             }
         });
         setVisible(true);
+    }
+    private void setStrategy(ViewType viewType){
+        viewType.setDate(getText());
     }
 }
 

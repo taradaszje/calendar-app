@@ -1,6 +1,6 @@
 package com.navigation;
 
-import com.components.ChangeDate;
+import com.components.DateObserver;
 import com.components.DateUtillity;
 import com.controller.Controller;
 
@@ -11,9 +11,9 @@ import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class DateTextField extends JTextField implements ChangeDate {
+public class DateObserverTextField extends JTextField implements DateObserver {
 
-    public DateTextField() {
+    public DateObserverTextField() {
         this.setText(LocalDate.now().toString());
         addKeyListener(new KeyListener() {
             @Override

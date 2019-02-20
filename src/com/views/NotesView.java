@@ -1,9 +1,5 @@
 package com.views;
-//TODO coś z enumami
-//TODO ogarnąć utility z date formaterem
-
-//TODO i w sumie to poczekać na code review
-import com.components.ChangeDate;
+import com.components.DateObserver;
 import com.components.NotesMap;
 
 import javax.swing.*;
@@ -12,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesView extends JPanel implements ChangeDate {
+public class NotesView extends JPanel implements DateObserver {
     private JTextArea textArea = new JTextArea();
     private JScrollPane scrollPane = new JScrollPane(textArea);
 
@@ -28,10 +24,7 @@ public class NotesView extends JPanel implements ChangeDate {
     public void updateDate(LocalDate date) {
         NotesMap instance = NotesMap.getInstance();
         List<String> noteList = instance.getNotesMap().getOrDefault(date,new ArrayList<>());
-        String temp = "";
-        for(String note : noteList){
-            temp = temp + note + "\n";
-        }
+        String temp = String.join("\n",noteList);
         textArea.setText(temp);
     }
 }

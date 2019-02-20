@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class DateUtillity {
     private static final String PATTERN ="yyyy-MM-dd";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
-    public DateUtillity(){ }
+    private DateUtillity(){ }
 
     public static LocalDate stringToDate(String dateString) { ;
         LocalDate date = LocalDate.parse(dateString, formatter);
