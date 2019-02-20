@@ -11,6 +11,7 @@ public class NotesView extends JPanel implements DateObserver {
     private JScrollPane scrollPane = new JScrollPane(textArea);
 
     public NotesView(){
+        Controller.getInstance().addDateObserver(this);
         textArea.setText("Notes be here!");
         scrollPane.setPreferredSize(new Dimension(200,50));
         this.add(scrollPane);

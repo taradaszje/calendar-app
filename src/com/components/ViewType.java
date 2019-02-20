@@ -5,7 +5,7 @@ import com.navigation.DayButton;
 
 import java.time.LocalDate;
 
-
+//todo increase , decrease date zamiast equals string
 public enum ViewType {
 
     Week{
@@ -42,7 +42,7 @@ public enum ViewType {
 
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
-           DayButton[] days = new DayButton[localDate.lengthOfMonth()];
+            DayButton[] days = new DayButton[localDate.lengthOfMonth()];
             LocalDate temp = LocalDate.of(localDate.getYear(), localDate.getMonth(),1);
             for (int i = 0; i < days.length; i++) {
                 days[i] = new DayButton(temp.plusDays(i).toString());

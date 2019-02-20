@@ -14,6 +14,7 @@ import java.time.format.DateTimeParseException;
 public class DateObserverTextField extends JTextField implements DateObserver {
 
     public DateObserverTextField() {
+        Controller.getInstance().addDateObserver(this);
         this.setText(LocalDate.now().toString());
         addKeyListener(new KeyListener() {
             @Override

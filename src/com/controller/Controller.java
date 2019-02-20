@@ -19,22 +19,12 @@ public class Controller {
 
     private LocalDate date = LocalDate.now();
     private ViewType viewType = ViewType.Week;
-    private List<DateObserver> dateList = new ArrayList();
-    private List<ViewObserver> viewList = new ArrayList();
-    private View view = new View();
-    private Previous previous = new Previous();
-    private DateObserverTextField dateTextField = new DateObserverTextField();
-    private CalendarViewObserver calendarView = new CalendarViewObserver();
-    private NotesView notesView = new NotesView();
-    private Next next = new Next();
+    private List<DateObserver> dateList = new ArrayList<>();
+    private List<ViewObserver> viewList = new ArrayList<>();
     private NotesService notesService = new NotesMap();
 
     private Controller() {
 
-        dateList.add(calendarView);
-        viewList.add(calendarView);
-        dateList.add(notesView);
-        dateList.add(dateTextField);
     }
 
     public ViewType getViewType() {
@@ -62,33 +52,15 @@ public class Controller {
     public void notifyAboutViewChange(ViewType view) {
         this.viewList.forEach(viewObserver -> viewObserver.updateView(view));
     }
+    public void addDateObserver(DateObserver dateObserver){
+        this.dateList.add(dateObserver);
+    }
+    public void addViewObserver(ViewObserver viewObserver){
+        this.viewList.add(viewObserver);
+    }
 
     public static Controller getInstance() {
         return ourInstance;
-    }
-
-    public View getView() {
-        return view;
-    }
-
-    public Previous getPrevious() {
-        return previous;
-    }
-
-    public DateObserverTextField getDateTextField() {
-        return dateTextField;
-    }
-
-    public CalendarViewObserver getCalendarView() {
-        return calendarView;
-    }
-
-    public Next getNext() {
-        return next;
-    }
-
-    public NotesView getNotesView() {
-        return notesView;
     }
 
     public NotesService getNotesService() {

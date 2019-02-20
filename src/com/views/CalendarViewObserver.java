@@ -17,34 +17,15 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
     private DayButton days[];
 
     public CalendarViewObserver() {
-       // days = new DayButton[7];
-        LocalDate date = LocalDate.now();
-        //days = setStrategy(ViewType.Week);
+        Controller.getInstance().addDateObserver(this);
+        Controller.getInstance().addViewObserver(this);
         createButtons(ViewType.Week);
         days[0].setBackground(Color.GRAY);
     }
 
     void createButtons(ViewType view) {
         this.removeAll();
-//        if (view == ViewType.Month) {                  //wrzucic enuma
-//            days = new DayButton[date.lengthOfMonth()];
-//            LocalDate temp = LocalDate.of(date.getYear(),date.getMonth(),1);
-//            for (int i = 0; i < date.lengthOfMonth(); i++) {
-//                days[i] = new DayButton(temp.plusDays(i).toString());
-//                this.add(days[i]);
-//            }
-//        } else if(view == ViewType.Week) {                           // poprawić na else ifa
-//            days = new DayButton[7];
-//            LocalDate temp = date;
-//            for (int i = 0; i < 7; i++) {
-//                temp = date.plusDays(i);
-//                days[i] = new DayButton(temp.toString());
-//                this.add(days[i]);
-//            }
-
-            //}
-       // this.days = setStrategy(Controller.getInstance().getViewType());
-        days = setStrategy(Controller.getInstance().getViewType());
+        days = setStrategy(view);
         for(DayButton day :  getDays()){
             add(day);
         }
