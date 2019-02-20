@@ -90,4 +90,8 @@ public class Controller {
     public NotesView getNotesView() {
         return notesView;
     }
+
+    public NotesService getNotesService() {
+        return notesService;
+    }
 }

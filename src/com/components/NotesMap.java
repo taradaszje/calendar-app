@@ -25,6 +25,17 @@ public class NotesMap implements NotesService{
        notesMap.put(date,temp);
     }
 
+    @Override
+    public void removeNote(LocalDate date) {
+        notesMap.remove(date);
+    }
+
+    @Override
+    public List<String> getNote(LocalDate date) {
+        List<String> noteList = getNotesMap().getOrDefault(date,new ArrayList<>());
+        return noteList;
+    }
+
     public Map<LocalDate, List<String>> getNotesMap() {
         return notesMap;
     }

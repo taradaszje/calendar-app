@@ -20,8 +20,8 @@ public enum ViewType {
         }
 
         @Override
-        public DayButton[] createButtons(DayButton[] days, LocalDate localDate) {
-            days = new DayButton[7];
+        public DayButton[] createButtons(LocalDate localDate) {
+            DayButton[] days = new DayButton[7];
             LocalDate temp = localDate;
             for (int i = 0; i < 7; i++) {
                 temp = localDate.plusDays(i);
@@ -41,8 +41,8 @@ public enum ViewType {
         }
 
         @Override
-        public DayButton[] createButtons(DayButton[] days, LocalDate localDate) {
-            days = new DayButton[localDate.lengthOfMonth()];
+        public DayButton[] createButtons(LocalDate localDate) {
+           DayButton[] days = new DayButton[localDate.lengthOfMonth()];
             LocalDate temp = LocalDate.of(localDate.getYear(), localDate.getMonth(),1);
             for (int i = 0; i < days.length; i++) {
                 days[i] = new DayButton(temp.plusDays(i).toString());
@@ -51,5 +51,5 @@ public enum ViewType {
         }
     };
     abstract public void setDate(String object);
-    abstract public DayButton[] createButtons(DayButton[] days, LocalDate localDate);
+    abstract public DayButton[] createButtons(LocalDate localDate);
 }

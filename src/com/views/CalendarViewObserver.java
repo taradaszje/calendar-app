@@ -1,6 +1,5 @@
 package com.views;
 //todo uproscic tworzenie buttonow
-//todo instacja mapy cos tam
 
 import com.components.DateObserver;
 import com.components.ViewObserver;
@@ -18,14 +17,14 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
     private DayButton days[];
 
     public CalendarViewObserver() {
-        //days = new DayButton[7];
+       // days = new DayButton[7];
         LocalDate date = LocalDate.now();
-        days = setStrategy(ViewType.Week);
-        createButtons(date, ViewType.Week);
+        //days = setStrategy(ViewType.Week);
+        createButtons(ViewType.Week);
         days[0].setBackground(Color.GRAY);
     }
 
-    void createButtons(LocalDate date, ViewType view) {
+    void createButtons(ViewType view) {
         this.removeAll();
 //        if (view == ViewType.Month) {                  //wrzucic enuma
 //            days = new DayButton[date.lengthOfMonth()];
@@ -45,7 +44,10 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
 
             //}
        // this.days = setStrategy(Controller.getInstance().getViewType());
-        setStrategy(Controller.getInstance().getViewType());
+        days = setStrategy(Controller.getInstance().getViewType());
+        for(DayButton day :  getDays()){
+            add(day);
+        }
         updateUI();
     }
 
@@ -66,10 +68,10 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
     @Override
     public void updateView(ViewType view) {
         Controller controller = Controller.getInstance();
-        createButtons(controller.getDate(), controller.getViewType());
+        createButtons(controller.getViewType());
     }
     private DayButton[] setStrategy(ViewType viewType){
-        return viewType.createButtons(getDays(),Controller.getInstance().getDate());
+        return viewType.createButtons(Controller.getInstance().getDate());
     }
 
     public DayButton[] getDays() {

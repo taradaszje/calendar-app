@@ -1,12 +1,10 @@
 package com.views;
 import com.components.DateObserver;
-import com.components.NotesMap;
+import com.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NotesView extends JPanel implements DateObserver {
     private JTextArea textArea = new JTextArea();
@@ -22,9 +20,7 @@ public class NotesView extends JPanel implements DateObserver {
 
     @Override
     public void updateDate(LocalDate date) {
-        NotesMap instance = NotesMap.getInstance();
-        List<String> noteList = instance.getNotesMap().getOrDefault(date,new ArrayList<>());
-        String temp = String.join("\n",noteList);
+        String temp = String.join("\n", Controller.getInstance().getNotesService().getNote(date));
         textArea.setText(temp);
     }
 }
