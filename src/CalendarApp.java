@@ -24,7 +24,7 @@ public class CalendarApp extends JFrame {
         add(upperPanel, BorderLayout.PAGE_START);
         add(new CalendarViewObserver(), BorderLayout.CENTER);
         add(new NotesView(), BorderLayout.PAGE_END);
-        setSize(400, 400);
+        setSize(740, 300);
         setVisible(true);
     }
 

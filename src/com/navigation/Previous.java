@@ -16,8 +16,7 @@ public class Previous extends JButton {
             public void actionPerformed(ActionEvent actionEvent) {
                 Controller controller = Controller.getInstance();
                 setStrategy(controller.getViewType());
-                controller.notifyAboutViewChange(controller.getViewType());
-                controller.notifyAboutDateChange(controller.getDate());
+                controller.notifyObserver(controller.getDate(),controller.getViewType());
             }
         });
         setVisible(true);

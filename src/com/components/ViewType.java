@@ -3,6 +3,8 @@ package com.components;
 import com.controller.Controller;
 import com.navigation.DayButton;
 
+import java.awt.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public enum ViewType {
@@ -12,10 +14,12 @@ public enum ViewType {
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[7];
             LocalDate temp = localDate;
+            DayOfWeek dayOfWeek = localDate.getDayOfWeek();
             for (int i = 0; i < 7; i++) {
-                temp = localDate.plusDays(i);
+                temp = localDate.minusDays(dayOfWeek.getValue()-1).plusDays(i);
                 days[i] = new DayButton(temp.toString());
             }
+            days[dayOfWeek.getValue()-1].setBackground(Color.GRAY);
             return days;
         }
 
@@ -28,7 +32,8 @@ public enum ViewType {
         public void decreaseDate() {
             Controller.getInstance().setDate(Controller.getInstance().getDate().minusDays(7));
         }
-    }, Month {
+    },
+    Month {
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[localDate.lengthOfMonth()];

@@ -1,22 +1,14 @@
 package com.controller;
 
-import com.navigation.DateObserverTextField;
-import com.navigation.Next;
-import com.navigation.Previous;
-import com.navigation.View;
 import com.components.*;
-import com.views.CalendarViewObserver;
-import com.views.NotesView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Controller {
 
-    private static Controller ourInstance = new Controller();
-
+    private static Controller instance = new Controller();
     private LocalDate date = LocalDate.now();
     private ViewType viewType = ViewType.Week;
     private List<DateObserver> dateList = new ArrayList<>();
@@ -24,7 +16,11 @@ public class Controller {
     private NotesService notesService = NotesMap.getInstance();
 
     private Controller() {
+    }
 
+    public void notifyObserver(LocalDate date, ViewType viewType) {
+        notifyAboutViewChange(viewType);
+        notifyAboutDateChange(date);
     }
 
     public ViewType getViewType() {
@@ -62,7 +58,7 @@ public class Controller {
     }
 
     public static Controller getInstance() {
-        return ourInstance;
+        return instance;
     }
 
     public NotesService getNotesService() {

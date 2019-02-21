@@ -35,8 +35,7 @@ public class DateObserverTextField extends JTextField implements DateObserver {
                     } catch (DateTimeParseException e) {
                         JOptionPane.showMessageDialog(new Frame(), "Nie tak kolego, popraw się.");
                     }
-                    controller.notifyAboutViewChange(controller.getViewType());
-                    controller.notifyAboutDateChange(controller.getDate());
+                    controller.notifyObserver(controller.getDate(),controller.getViewType());
                 }
             }
         });

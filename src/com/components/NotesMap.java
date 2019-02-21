@@ -9,13 +9,13 @@ import java.util.Map;
 public class NotesMap implements NotesService {
 
     private Map<LocalDate, List<String>> notesMap = new HashMap<>();
-    private static NotesMap ourInstance = new NotesMap();
+    private static NotesMap instance = new NotesMap();
 
     public static NotesMap getInstance() {
-        return ourInstance;
+        return instance;
     }
 
-    public NotesMap() {
+    private NotesMap() {
     }
 
     @Override
@@ -32,8 +32,7 @@ public class NotesMap implements NotesService {
 
     @Override
     public List<String> getNote(LocalDate date) {
-        List<String> noteList = notesMap.getOrDefault(date, new ArrayList<>());
-        return noteList;
+        return notesMap.getOrDefault(date, new ArrayList<>());
     }
 
     private Map<LocalDate, List<String>> getNotesMap() {

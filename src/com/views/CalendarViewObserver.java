@@ -19,7 +19,6 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
         Controller.getInstance().addDateObserver(this);
         Controller.getInstance().addViewObserver(this);
         createButtons(ViewType.Week);
-        days[0].setBackground(Color.GRAY);
     }
 
     void createButtons(ViewType view) {

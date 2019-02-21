@@ -2,13 +2,11 @@ package com.navigation;
 
 import com.components.ViewType;
 import com.controller.Controller;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View extends JComboBox {
-
 
     public View() {
         addItem(ViewType.Week);
@@ -22,6 +20,4 @@ public class View extends JComboBox {
             }
         });
     }
-
-
 }
