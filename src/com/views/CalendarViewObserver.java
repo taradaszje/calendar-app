@@ -32,7 +32,6 @@ public class CalendarViewObserver extends JPanel implements DateObserver, ViewOb
 
     @Override
     public void updateDate(LocalDate date) {
-
         for (DayButton day : this.getDays()) {
             if (day.getText().equals(date.toString())) {
                 day.setBackground(Color.GRAY);

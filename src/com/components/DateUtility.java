@@ -13,8 +13,4 @@ public final class DateUtility {
     public static LocalDate stringToDate(String dateString) {
         return LocalDate.parse(dateString, formatter);
     }
-
-    public static DateTimeFormatter getFormatter() {
-        return formatter;
-    }
 }

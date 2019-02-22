@@ -14,13 +14,14 @@ import java.time.LocalDate;
 public class DayButton extends JButton {
 
     private int counter;
+    private LocalDate date = DateUtility.stringToDate(getText());
 
     public DayButton(String title) {
         super(title);
         addActionListener(actionEvent -> {
             setBackground(Color.GRAY);
             Controller controller = Controller.getInstance();
-            controller.setDate(DateUtility.stringToDate(title));
+            controller.setDate(date);
         });
         addMouseListener(new MouseListener() {
             @Override
@@ -37,11 +38,10 @@ public class DayButton extends JButton {
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 if (SwingUtilities.isRightMouseButton(mouseEvent)) {
-                    LocalDate date = LocalDate.parse(getText(), DateUtility.getFormatter());
                     String note = JOptionPane.showInputDialog("New note");
                     NotesMap.getInstance().addNote(date, note);
-                    Controller.getInstance().notifyAboutDateChange(date);
                 }
+                Controller.getInstance().notifyAboutViewNote(Controller.getInstance().getDate());
             }
 
             @Override

@@ -13,6 +13,7 @@ public class Controller {
     private ViewType viewType = ViewType.Week;
     private List<DateObserver> dateList = new ArrayList<>();
     private List<ViewObserver> viewList = new ArrayList<>();
+    private List<NoteObserver> noteList = new ArrayList<>();
     private NotesService notesService = NotesMap.getInstance();
 
     private Controller() {
@@ -47,6 +48,14 @@ public class Controller {
 
     public void notifyAboutViewChange(ViewType view) {
         this.viewList.forEach(viewObserver -> viewObserver.updateView(view));
+    }
+
+    public void notifyAboutViewNote(LocalDate date) {
+        this.noteList.forEach(noteObserver -> noteObserver.viewNote(date));
+    }
+
+    public void addNoteObserver(NoteObserver noteObserver) {
+        this.noteList.add(noteObserver);
     }
 
     public void addDateObserver(DateObserver dateObserver) {

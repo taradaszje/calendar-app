@@ -30,12 +30,13 @@ public class DateObserverTextField extends JTextField implements DateObserver {
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER) {
                     Controller controller = Controller.getInstance();
                     try {
-                        LocalDate date = LocalDate.parse(getText(), DateUtility.getFormatter());
+                        LocalDate date = DateUtility.stringToDate(getText());
                         controller.setDate(date);
+                        controller.notifyAboutViewChange(controller.getViewType());
+
                     } catch (DateTimeParseException e) {
                         JOptionPane.showMessageDialog(new Frame(), "Nie tak kolego, popraw się.");
                     }
-                    controller.notifyObserver(controller.getDate(),controller.getViewType());
                 }
             }
         });
