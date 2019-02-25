@@ -13,12 +13,12 @@ import java.time.LocalDate;
 
 public class CalendarViewObserver extends JPanel implements DateObserver, ViewObserver {
 
-    private DayButton days[];
+    private DayButton[] days;
 
     public CalendarViewObserver() {
         Controller.getInstance().addDateObserver(this);
         Controller.getInstance().addViewObserver(this);
-        createButtons(ViewType.Week);
+        createButtons(ViewType.WEEK);
     }
 
     void createButtons(ViewType view) {

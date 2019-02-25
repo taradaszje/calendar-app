@@ -6,16 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NotesMap implements NotesService {
+public class Notes implements NotesService {
 
     private Map<LocalDate, List<String>> notesMap = new HashMap<>();
-    private static NotesMap instance = new NotesMap();
+    private static Notes instance = new Notes();
 
-    public static NotesMap getInstance() {
+    public static Notes getInstance() {
         return instance;
     }
 
-    private NotesMap() {
+    private Notes() {
     }
 
     @Override
@@ -34,9 +34,4 @@ public class NotesMap implements NotesService {
     public List<String> getNote(LocalDate date) {
         return notesMap.getOrDefault(date, new ArrayList<>());
     }
-
-    private Map<LocalDate, List<String>> getNotesMap() {
-        return notesMap;
-    }
-
 }

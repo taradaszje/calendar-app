@@ -10,11 +10,11 @@ public class Controller {
 
     private static Controller instance = new Controller();
     private LocalDate date = LocalDate.now();
-    private ViewType viewType = ViewType.Week;
+    private ViewType viewType = ViewType.WEEK;
     private List<DateObserver> dateList = new ArrayList<>();
     private List<ViewObserver> viewList = new ArrayList<>();
     private List<NoteObserver> noteList = new ArrayList<>();
-    private NotesService notesService = NotesMap.getInstance();
+    private NotesService notesService = Notes.getInstance();
 
     private Controller() {
     }

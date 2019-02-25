@@ -1,6 +1,5 @@
 package com.views;
 
-import com.components.DateObserver;
 import com.components.NoteObserver;
 import com.components.NotesService;
 import com.controller.Controller;

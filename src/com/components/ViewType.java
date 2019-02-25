@@ -9,15 +9,13 @@ import java.time.LocalDate;
 
 public enum ViewType {
 
-    Week {
+    WEEK {
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[7];
-            LocalDate temp = localDate;
             DayOfWeek dayOfWeek = localDate.getDayOfWeek();
             for (int i = 0; i < 7; i++) {
-                temp = localDate.minusDays(dayOfWeek.getValue()-1).plusDays(i);
-                days[i] = new DayButton(temp.toString());
+                days[i] = new DayButton( localDate.minusDays(dayOfWeek.getValue() - 1L).plusDays(i).toString() );
             }
             days[dayOfWeek.getValue()-1].setBackground(Color.GRAY);
             return days;
@@ -33,7 +31,7 @@ public enum ViewType {
             Controller.getInstance().setDate(Controller.getInstance().getDate().minusDays(7));
         }
     },
-    Month {
+    MONTH {
         @Override
         public DayButton[] createButtons(LocalDate localDate) {
             DayButton[] days = new DayButton[localDate.lengthOfMonth()];
@@ -55,9 +53,9 @@ public enum ViewType {
         }
     };
 
-    abstract public DayButton[] createButtons(LocalDate localDate);
+    public abstract DayButton[] createButtons(LocalDate localDate);
 
-    abstract public void increaseDate();
+    public abstract void increaseDate();
 
-    abstract public void decreaseDate();
+    public abstract void decreaseDate();
 }

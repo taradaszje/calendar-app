@@ -19,10 +19,12 @@ public class DateObserverTextField extends JTextField implements DateObserver {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
+                throw new UnsupportedOperationException();
             }
 
             @Override
