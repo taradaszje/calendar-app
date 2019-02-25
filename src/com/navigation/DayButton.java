@@ -1,7 +1,7 @@
 package com.navigation;
 
 import com.components.DateUtility;
-import com.components.NotesMap;
+import com.components.Notes;
 import com.controller.Controller;
 
 import javax.swing.*;
@@ -33,23 +33,26 @@ public class DayButton extends JButton {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 if (SwingUtilities.isRightMouseButton(mouseEvent)) {
                     String note = JOptionPane.showInputDialog("New note");
-                    NotesMap.getInstance().addNote(date, note);
+                    Notes.getInstance().addNote(date, note);
                 }
                 Controller.getInstance().notifyAboutViewNote(Controller.getInstance().getDate());
             }
 
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
+                throw new UnsupportedOperationException();
             }
         });
     }
