@@ -33,7 +33,7 @@ public class DayButton extends JButton {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-                throw new UnsupportedOperationException();
+                // not supported yet
             }
 
             @Override
@@ -47,12 +47,12 @@ public class DayButton extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
-                throw new UnsupportedOperationException();
+                // not supported yet
             }
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
-                throw new UnsupportedOperationException();
+                // not supported yet
             }
         });
     }
